@@ -1,0 +1,31 @@
+doctype html
+html
+  head
+    title Ejecutar Consultas
+    link(rel="stylesheet", href="/consultas.css")
+  body
+    header
+      h1 Ejecutar Consultas
+    form(action="/consultas" method="POST")
+      label(for="consulta") Ingrese la consulta:
+      textarea(name="consulta" rows="5" cols="50" required)
+      br
+      button(type="submit") Ejecutar Consulta
+      button(type="button", onclick="location.href='/'", class="back-button") Volver
+
+    if (resultados && resultados.length > 0)
+      .resultados-container
+        h2.resultados-header Resultados
+        table
+          thead
+            tr
+              each key in Object.keys(resultados[0])
+                th= key
+          tbody
+            each resultado in resultados
+              tr
+                each value in Object.values(resultado)
+                  td= value
+    
+    if (error)
+      h2= error
